@@ -46,8 +46,8 @@ void setup() {
   strip.show();   // Turn OFF all pixels ASAP
   strip.setBrightness(255);
 
-  
-  Serial.begin(115200);
+
+  setupWEB();
 
 }
 
@@ -67,7 +67,7 @@ if (analogRead(sensor) == 0) {
     } else if(detect == 2) {
       tempoSensor = micros();
       tempo = micros();
-      server.handleClient();
+      
     } 
   } else {
   detect = 0;

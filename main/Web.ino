@@ -4,11 +4,12 @@
 const char* ssid = "relogio";
 const char* password = "holografico";
 
-int variable = 4;
+int variable = 4, variable1 = 0, variable2 = 0;
+
 
 AsyncWebServer server(80);
 
-void setup() {
+void setupWEB() {
     Serial.begin(115200);
 
     WiFi.softAP(ssid, password);
@@ -63,6 +64,3 @@ void setup() {
     server.begin();
 }
 
-void loop() {
-    // Your code here
-}
