@@ -6,7 +6,7 @@ double velocidadeAtualRPM = 0;
 unsigned long tempoAnteriorMedicao = 0;
 
 // --- Implementação da ISR ---
-void IRAM_ATTR contarGiro() {
+void contarGiro() {
   contagemPulsos++;
 }
 

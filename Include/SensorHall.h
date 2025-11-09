@@ -15,7 +15,7 @@ const unsigned long INTERVALO_MEDICAO = 100; // ms
 // --- Protótipos de Funções ---
 
 // ISR: Chamada a cada pulso do sensor Hall
-void IRAM_ATTR contarGiro(); 
+void contarGiro(); 
 
 // Inicializa o pino e a interrupção
 void inicializarSensorHall();
