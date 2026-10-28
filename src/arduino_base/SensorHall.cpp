@@ -5,6 +5,8 @@ static volatile unsigned long contagemPulsos = 0;
 double velocidadeAtualRPM = 0;
 unsigned long tempoAnteriorMedicao = 0;
 bool imaDetectado = false;
+unsigned long INTERVALO_MEDICAO; // ms
+
 
 // Variáveis para o filtro PID
 double rpmFiltrado = 0.0;
@@ -14,11 +16,11 @@ void contarGiro() {
     
     // HISTERESE: Cria uma faixa de segurança para evitar contagem dupla
     // Ajuste esses valores (800 e 600) dependendo da força do seu ímã!
-    if (valorBruto > 800 && !imaDetectado) {
+    if (valorBruto > 600 && !imaDetectado) {
         imaDetectado = true; // O ímã chegou perto
         contagemPulsos++;    // Conta 1 giro
     } 
-    else if (valorBruto < 600 && imaDetectado) {
+    else if (valorBruto < 500 && imaDetectado) {
         imaDetectado = false; // O ímã se afastou o suficiente para rearmar
     }
 }
@@ -47,5 +49,7 @@ if (deltaTempo >= INTERVALO_MEDICAO) {
         velocidadeAtualRPM = rpmFiltrado;
         
         tempoAnteriorMedicao = tempoAtual;
+
+        INTERVALO_MEDICAO = velocidadeAtualRPM < 300 ? 300 : (map(velocidadeAtualRPM, 300, 1500, 300, 100)); // Ajusta o intervalo de medição com base na velocidade
     }
 }

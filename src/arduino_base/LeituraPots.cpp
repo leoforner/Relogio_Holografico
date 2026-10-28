@@ -1,6 +1,6 @@
 #include "LeituraPots.h"
 
-void LeituraPots::inicializarPotenciometros(unsigned long tempoCalibracaoMs) {
+void LeituraPots::inicializarPotenciometros() {
 //     Serial.println("Iniciando calibracao...");
 //     Serial.println("GIRE TODOS OS POTENCIOMETROS DE PONTA A PONTA!");
     
@@ -42,7 +42,7 @@ double LeituraPots::getSetpointRPM() {
     
     // Setpoint de 0 a 1000 RPM
     leitura = constrain(leitura, minSP, maxSP);
-    return map(leitura, 0, 1023, RPMmin, RPMmax); // Ajuste para 0-1000 RPM
+    return map(leitura, minSP, maxSP, RPMmin, RPMmax); // Ajuste para 0-1000 RPM
 }
 
 void LeituraPots::getGanhosPID(double &kp, double &ki, double &kd) {
